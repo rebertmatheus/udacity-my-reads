@@ -60,7 +60,8 @@ class BooksApp extends React.Component {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ListBooks 
-                      books={books.filter((book) => book.shelf ==='currentlyReading')} 
+                      books={books.filter((book) => book.shelf ==='currentlyReading')}
+                      changeShelf={true} 
                     />
                   </div>
                 </div>
@@ -69,6 +70,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ListBooks
                       books={books.filter((book) => book.shelf ==='wantToRead')}
+                      changeShelf={true}
                     />
                   </div>
                 </div>
@@ -78,6 +80,7 @@ class BooksApp extends React.Component {
                     <ol className="books-grid">
                       <ListBooks
                         books={books.filter((book) => book.shelf ==='read')}
+                        changeShelf={true}
                       />
                     </ol>
                   </div>
