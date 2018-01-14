@@ -22,6 +22,13 @@ class BooksApp extends React.Component {
     })
   }
 
+
+  updateBook = (book, shelf) => {
+    console.log('updated ID: ', book.id)
+    console.log('updated shelf: ', shelf)
+  }
+
+
   render() {
 
     const {books} = this.state
@@ -61,7 +68,8 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ListBooks 
                       books={books.filter((book) => book.shelf ==='currentlyReading')}
-                      changeShelf={true} 
+                      changeShelf={true}
+                      onUpdateBook={this.updateBook} 
                     />
                   </div>
                 </div>
@@ -71,6 +79,7 @@ class BooksApp extends React.Component {
                     <ListBooks
                       books={books.filter((book) => book.shelf ==='wantToRead')}
                       changeShelf={true}
+                      onUpdateBook={this.updateBook}
                     />
                   </div>
                 </div>
@@ -81,6 +90,7 @@ class BooksApp extends React.Component {
                       <ListBooks
                         books={books.filter((book) => book.shelf ==='read')}
                         changeShelf={true}
+                        onUpdateBook={this.updateBook}
                       />
                     </ol>
                   </div>

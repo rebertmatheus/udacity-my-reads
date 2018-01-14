@@ -11,7 +11,7 @@ class ListBooks extends Component {
     }
 
     render() {
-        const {books, changeShelf} = this.props
+        const {books, changeShelf, onUpdatedBook} = this.props
         
         let showningBooks
         showningBooks = books.sort(sortBy('title'))
@@ -24,6 +24,7 @@ class ListBooks extends Component {
                         <Book 
                             book={book} 
                             changeShelf={changeShelf}
+                            onUpdatedBook={onUpdatedBook}
                         />
                     </li>
                 ))}
