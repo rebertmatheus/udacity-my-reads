@@ -7,11 +7,12 @@ class ListBooks extends Component {
 
     static propTypes = {
         books: propTypes.array.isRequired,
-        changeShelf: propTypes.bool.isRequired
+        changeShelf: propTypes.bool.isRequired,
+        shelves: propTypes.array.isRequired
     }
 
     render() {
-        const {books, changeShelf, onUpdateBook} = this.props
+        const {books, changeShelf, onUpdateBook, shelves} = this.props
         
         let showningBooks
         showningBooks = books.sort(sortBy('title'))
@@ -25,6 +26,7 @@ class ListBooks extends Component {
                             book={book} 
                             changeShelf={changeShelf}
                             onUpdateBook={onUpdateBook}
+                            shelves={shelves}
                         />
                     </li>
                 ))}
