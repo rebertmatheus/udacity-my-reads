@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './components/ListBooks'
+import SearchBook from './components/SearchBook'
 import './App.css'
 
 const shelves = [
@@ -24,22 +25,26 @@ class BooksApp extends Component {
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
-      console.log(this.state.books)
     })
   }
 
   updateBook = (book, shelf) => {
-    if (book.shelf !== shelf) {
-      book.shelf = shelf
+    book.shelf = shelf
+    BooksAPI.update(book, shelf).then(() => {
       this.setState((state) => ({
-        books: state.books.filter(book => book.id !== book.id).concat([ book ])
+        books: state.books.filter((b) => (b.id !== book.id)).concat([book])
       }))
-      BooksAPI.update(book, shelf)
-    }
+    })
   }
+
+  onSearchBook = () => {
+
+  }
+
   render() {
 
     const {books} = this.state
+    const {updateBook, onSearchBook} = this
     
     return (
       <div className="app">
@@ -56,21 +61,24 @@ class BooksApp extends Component {
                     <ListBooks 
                       books={books.filter((book) => book.shelf ===shelf.id)}
                       changeShelf={true}
-                      onUpdateBook={this.updateBook}
+                      onUpdateBook={updateBook}
                       shelves={shelves}
                     />
                   </div>
                 </div>
               ))}
             </div>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+            <div  className="open-search">
+              <Link to='/search'/>
             </div>
           </div>
         )}/>
-        <Route path='/addBook' render={({ history }) => (
+        <Route path='/search' render={({ history }) => (
           <div>
-            <h2>Add Book</h2>
+            <SearchBook
+              onSearchBook={onSearchBook}
+              books={books}
+            />
           </div>
         )}/>
       </div>
