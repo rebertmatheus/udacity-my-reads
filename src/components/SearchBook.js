@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import ListBooks from './ListBooks'
+
+
 
 class SearchBook extends Component {
+
+    state = {
+        searchBooks:[]
+    }
+
     render() {
+        
+        const {books, changeShelf, onUpdateBook, shelves, onSearchBook} = this.props
+        const {numberOfBooks} = this.state
+        
+
         return (
         <div className="app">
             <div className="search-books">
                 <div className="search-books-bar">
                     <Link className="close-search" to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
-                        
-                        
                         
                         {/*
                         NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -20,12 +31,21 @@ class SearchBook extends Component {
                         However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                         you don't find a specific author or title. Every search is limited by search terms.
                         */}
-                        <input type="text" placeholder="Search by title or author"/>
+                        <input 
+                            type="text" 
+                            placeholder="Search by title or author"
+                            onChange={(event, value) => onSearchBook(event.target.value)}
+                        />
                     </div>
                 </div>
                 <div className="search-books-results">
                     <h2>Add Book</h2>
-                    <ol className="books-grid"></ol>
+                    <ListBooks className="books-grid"
+                        books={books}
+                        changeShelf={changeShelf}
+                        onUpdateBook={onUpdateBook}
+                        shelves={shelves}
+                    />
                 </div>
             </div>
         </div>

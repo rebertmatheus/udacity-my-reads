@@ -19,7 +19,8 @@ const shelves = [
 class BooksApp extends Component {
 
   state = {
-    books: []
+    books: [],
+    searchedBooks:[]
   }
 
   componentDidMount() {
@@ -37,14 +38,19 @@ class BooksApp extends Component {
     })
   }
 
-  onSearchBook = () => {
+  onSearchBook = (value) => {
+    console.log('termo: ', value)
+    BooksAPI.search(value).then((searchedBooks) => {
+      this.setState({searchedBooks})
+    })
 
+    console.log('searchedBooks: ', this.state.searchedBooks)
   }
 
   render() {
 
     const {books} = this.state
-    const {updateBook, onSearchBook} = this
+    const {updateBook, onSearchBook, searchedBooks} = this
     
     return (
       <div className="app">
@@ -77,7 +83,10 @@ class BooksApp extends Component {
           <div>
             <SearchBook
               onSearchBook={onSearchBook}
-              books={books}
+              books={searchedBooks}
+              changeShelf={true}
+              onUpdateBook={updateBook}
+              shelves={shelves}
             />
           </div>
         )}/>

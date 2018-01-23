@@ -18,7 +18,7 @@ class ListBooks extends Component {
         showningBooks = books.sort(sortBy('title'))
 
         return(
-            console.log(showningBooks),
+
             <ol className="books-grid">
                 {showningBooks.map((book) => (
                     <li key={book.id}>
@@ -31,6 +31,7 @@ class ListBooks extends Component {
                     </li>
                 ))}
             </ol>
+            
         )
     }
 }
