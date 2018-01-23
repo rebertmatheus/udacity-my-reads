@@ -6,15 +6,9 @@ import ListBooks from './ListBooks'
 
 class SearchBook extends Component {
 
-    state = {
-        searchBooks:[]
-    }
-
     render() {
         
         const {books, changeShelf, onUpdateBook, shelves, onSearchBook} = this.props
-        const {numberOfBooks} = this.state
-        
 
         return (
         <div className="app">
@@ -39,13 +33,15 @@ class SearchBook extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <h2>Add Book</h2>
-                    <ListBooks className="books-grid"
-                        books={books}
-                        changeShelf={changeShelf}
-                        onUpdateBook={onUpdateBook}
-                        shelves={shelves}
-                    />
+                    {books !== undefined &&
+                        <h2>Add Book</h2>
+                        <ListBooks className="books-grid"
+                            books={books}
+                            changeShelf={changeShelf}
+                            onUpdateBook={onUpdateBook}
+                            shelves={shelves}
+                        />
+                    }
                 </div>
             </div>
         </div>

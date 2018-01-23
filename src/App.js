@@ -49,8 +49,8 @@ class BooksApp extends Component {
 
   render() {
 
-    const {books} = this.state
-    const {updateBook, onSearchBook, searchedBooks} = this
+    const {books, searchedBooks} = this.state
+    const {updateBook, onSearchBook} = this
     
     return (
       <div className="app">
