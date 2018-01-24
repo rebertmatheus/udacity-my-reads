@@ -39,12 +39,16 @@ class BooksApp extends Component {
   }
 
   onSearchBook = (value) => {
-    console.log('termo: ', value)
     BooksAPI.search(value).then((searchedBooks) => {
       this.setState({searchedBooks})
+      if(searchedBooks.length > 0) {
+        this.state.books.map((book) => (
+          this.setState((state) => ({
+            searchedBooks: state.searchedBooks.filter((b) => (b.id !== book.id)).concat([book])
+          }))
+        ))
+      }
     })
-
-    console.log('searchedBooks: ', this.state.searchedBooks)
   }
 
   render() {
@@ -94,22 +98,5 @@ class BooksApp extends Component {
     )
   }
 }
-
-/**
- * 
- * 
- *   <div className="search-books">
-            <div className="search-books-bar">
-              <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-              <div className="search-books-input-wrapper">
-                <input type="text" placeholder="Search by title or author"/>
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        
- */
 
 export default BooksApp

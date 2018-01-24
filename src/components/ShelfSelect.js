@@ -24,23 +24,25 @@ class ShelfSelect extends Component {
         const {shelves, onUpdateBook, book} = this.props
 
     return (
-        <SelectField
-            floatingLabelText=" "
-            value={book.shelf || 'none'}
-            onChange={(event, selectedIndex, value) => onUpdateBook(book, value)}
-            autoWidth={true}
-            fullWidth
-            style={style}
-        >
-            {shelves.map((shelf, index) => (
-                <MenuItem 
-                    key={index}
-                    value={shelf.id}
-                    label={shelf.name}
-                    primaryText={shelf.name}
-                />
-            ))}
-        </SelectField>
+        <div className='bookShelf-box'>
+            <SelectField 
+                floatingLabelText='Shelf:'
+                value={book.shelf || 'none'}
+                onChange={(event, selectedIndex, value) => onUpdateBook(book, value)}
+                autoWidth={true}
+                fullWidth
+                style={style}
+            >
+                {shelves.map((shelf, index) => (
+                    <MenuItem 
+                        key={index}
+                        value={shelf.id}
+                        label={shelf.name}
+                        primaryText={shelf.name}
+                    />
+                ))}
+            </SelectField>
+        </div>
     )}
 }
 

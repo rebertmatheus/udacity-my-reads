@@ -15,7 +15,9 @@ class ListBooks extends Component {
         const {books, changeShelf, onUpdateBook, shelves} = this.props
         
         let showningBooks
-        showningBooks = books.sort(sortBy('title'))
+        if(books) {
+            showningBooks = books.sort(sortBy('title'))
+        }
 
         return(
 

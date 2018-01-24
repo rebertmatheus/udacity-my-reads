@@ -14,11 +14,11 @@ class Book extends Component {
                 <div className="book-title">{book.title}</div>
                 <div className="book-authors">{book.authors}</div>
                 {changeShelf && 
-                        <ShelfSelect
-                            shelves={shelves}
-                            book={book}
-                            onUpdateBook={onUpdateBook}
-                        />
+                    <ShelfSelect
+                        shelves={shelves}
+                        book={book}
+                        onUpdateBook={onUpdateBook}
+                    />
                 }
             </div>
     )}
