@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ShelfSelect from './ShelfSelect'
 
+/**
+ * Classe responsável por renderizar os livros
+ */
 class Book extends Component {
 
     render(){

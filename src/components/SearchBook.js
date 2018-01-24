@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import propTypes from 'prop-types'
 
-
+/**
+ * Classe de pesquisa de livros.
+ */
 class SearchBook extends Component {
     
     static propTypes = {

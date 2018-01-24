@@ -13,6 +13,9 @@ const style = {
     fontSize: '0.8em',
     width: '130px'
   };
+  /**
+   * Componente responsável pela seleção das estantes de cada livro.
+   */
 
 class ShelfSelect extends Component {
 

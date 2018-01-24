@@ -3,6 +3,9 @@ import Book from './Book'
 import sortBy from 'sort-by'
 import propTypes from 'prop-types'
 
+/**
+ * Classe responsável por renderizar a lista com os livros, filtrados por estante.
+ */
 class ListBooks extends Component {
 
     static propTypes = {

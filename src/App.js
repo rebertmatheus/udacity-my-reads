@@ -13,7 +13,7 @@ const shelves = [
     name: 'Want to Read'},
 
   { id: 'read',
-    name: 'Read'}
+    name: 'Read'}  
 ]
 
 class BooksApp extends Component {
@@ -38,6 +38,10 @@ class BooksApp extends Component {
     })
   }
 
+  /**
+   * A função de search busca os livros na API.
+   * Filtra os livros já existentes nas estantes atualmente.
+   */
   onSearchBook = (value) => {
     BooksAPI.search(value).then((searchedBooks) => {
       this.setState({searchedBooks})
