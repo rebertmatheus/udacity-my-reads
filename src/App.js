@@ -48,30 +48,28 @@ class BooksApp extends Component {
     //zera a lista de livros pesquisados.
     this.setState({searchedBooks:[]})
     value = Trim(value)
-    console.log('searchedBooks1', this.state.searchedBooks)
+    
     //verifica se possui termo a ser pesquisado
     if(value) {
-      console.log('trim(value)1', Trim(value))
+      
       //Filtra os resultados da estante de acordo com o termo pesquisado e inseri em uma variável temporaria.
-      console.log('this.state.books1', this.state.books)
       const match = new RegExp(escapeRegExp(value))
       let listBooks = this.state.books.filter((book) => match.test(book.title))
-      console.log('listBooks1',listBooks)
+      
       //Busca pelos livros na API e coloca na variável de state searchedBooks
       BooksAPI.search(value).then((searchedBooks) => {
         this.setState({searchedBooks})
-        console.log('searchedBooks1 ',searchedBooks)
+        
         //verifica se teve resultado na pesquisa
         if(searchedBooks.length > 0) {
           //concatena o resultado da API com o resultado da estante atual.
-          console.log('crashou aqui')
+          
           listBooks.map((book) => (
             this.setState((state) => ({
               searchedBooks: state.searchedBooks.filter((b) => (b.id !== book.id)).concat([book])
             }))
           ))
         }
-        console.log('searchedBooks2 ',searchedBooks)
       })
     }
   }

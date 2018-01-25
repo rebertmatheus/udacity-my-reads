@@ -1,31 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Book from './Book'
 import sortBy from 'sort-by'
 import propTypes from 'prop-types'
 
 /**
- * Classe responsável por renderizar a lista com os livros, filtrados por estante.
+ * Componente responsável por renderizar a lista com os livros, filtrados por estante.
  */
-class ListBooks extends Component {
-
-    static propTypes = {
-        books: propTypes.array.isRequired,
-        changeShelf: propTypes.bool.isRequired,
-        shelves: propTypes.array.isRequired
+const ListBooks = props => {
+    const {books, changeShelf, onUpdateBook, shelves} = props
+    
+    let showningBooks
+    if(books) {
+        showningBooks = books.sort(sortBy('title'))
     }
 
-    render() {
-        const {books, changeShelf, onUpdateBook, shelves} = this.props
-        
-        let showningBooks
-        if(books) {
-            showningBooks = books.sort(sortBy('title'))
-        }
+    return(
 
-        return(
-
-            <ol className="books-grid">
-                {showningBooks.map((book) => (
+        <ol className="books-grid">
+            {showningBooks &&
+                showningBooks.map((book) => (
                     <li key={book.id}>
                         <Book 
                             book={book} 
@@ -34,11 +27,18 @@ class ListBooks extends Component {
                             shelves={shelves}
                         />
                     </li>
-                ))}
-            </ol>
-            
-        )
-    }
+                ))
+            }
+        </ol>
+        
+    )
+    
+}
+
+ListBooks.PropTypes = {
+    books: propTypes.array.isRequired,
+    changeShelf: propTypes.bool.isRequired,
+    shelves: propTypes.array.isRequired
 }
 
 export default ListBooks

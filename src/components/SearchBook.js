@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import ListBooks from './ListBooks'
 import propTypes from 'prop-types'
@@ -6,23 +6,12 @@ import propTypes from 'prop-types'
 /**
  * Classe de pesquisa de livros.
  */
-class SearchBook extends Component {
-    
-    static propTypes = {
-        changeShelf: propTypes.bool.isRequired,
-        shelves: propTypes.array.isRequired,
-        onUpdateBook: propTypes.func.isRequired,
-        onSearchBook: propTypes.func.isRequired
-    }
+const SearchBook = props => {
 
-    render() {
-        
-        const {books, changeShelf, onUpdateBook, shelves, onSearchBook} = this.props
+    const {books, changeShelf, onUpdateBook, shelves, onSearchBook} = props
+    let count = books.length
 
-        let count = books.length
-
-        console.log(count)
-        return (
+    return (
         <div className="app">
             <div className="search-books">
                 <div className="search-books-bar">
@@ -48,7 +37,14 @@ class SearchBook extends Component {
                 </div>
             </div>
         </div>
-    )}
+    )
+}
+
+SearchBook.propTypes = {
+    changeShelf: propTypes.bool.isRequired,
+    shelves: propTypes.array.isRequired,
+    onUpdateBook: propTypes.func.isRequired,
+    onSearchBook: propTypes.func.isRequired
 }
 
 export default SearchBook
