@@ -9,7 +9,6 @@ import propTypes from 'prop-types'
 class SearchBook extends Component {
     
     static propTypes = {
-        books: propTypes.array.isRequired,
         changeShelf: propTypes.bool.isRequired,
         shelves: propTypes.array.isRequired,
         onUpdateBook: propTypes.func.isRequired,
@@ -20,6 +19,9 @@ class SearchBook extends Component {
         
         const {books, changeShelf, onUpdateBook, shelves, onSearchBook} = this.props
 
+        let count = books.length
+
+        console.log(count)
         return (
         <div className="app">
             <div className="search-books">
@@ -35,7 +37,7 @@ class SearchBook extends Component {
                 </div>
                 <div className="search-books-results">
                 <h2>Add Book</h2>
-                    {books &&
+                    {count > 0 &&
                         <ListBooks className="books-grid"
                             books={books}
                             changeShelf={changeShelf}

@@ -36,6 +36,12 @@ class ShelfSelect extends Component {
                 fullWidth
                 style={style}
             >
+                <MenuItem 
+                    key=''
+                    value='none'
+                    label='None'
+                    primaryText='None'
+                />
                 {shelves.map((shelf, index) => (
                     <MenuItem 
                         key={index}
